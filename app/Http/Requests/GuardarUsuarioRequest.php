@@ -22,11 +22,11 @@ class GuardarUsuarioRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nombres' => 'requiere',
-            'apellidos' => 'requiere',
-            'correo_electronico' => 'requiere|email|unique',
-            'password' => 'requiere',
-            'rol' => 'requiere'
+            'nombres' => 'required',
+            'apellidos' => 'required',
+            'correo_electronico' => 'required|email|unique:usuarios,correo_electronico',
+            'password' => 'required',
+            'rol' => 'required'
         ];
     }
 }
