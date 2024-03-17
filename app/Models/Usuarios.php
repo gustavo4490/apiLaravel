@@ -15,4 +15,9 @@ class Usuarios extends Model
         'password',
         'rol'
     ];
+
+    protected $hidden =[
+        'updated_at',
+        'created_at'
+    ];
 }
