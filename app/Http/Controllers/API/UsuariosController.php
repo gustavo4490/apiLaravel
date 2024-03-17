@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\GuardarUsuarioRequest;
 use App\Models\Usuarios;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+
 
 class UsuariosController extends Controller
 {
@@ -36,6 +38,7 @@ class UsuariosController extends Controller
      */
     public function show(Usuarios $usuario)
     {
+        Log::channel('system')->info('Usuario encontrado con exito');
         return response()->json([
             'res' => true,
             'usuario' => $usuario
