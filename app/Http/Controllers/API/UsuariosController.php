@@ -34,9 +34,12 @@ class UsuariosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Usuarios $usuario)
     {
-        //
+        return response()->json([
+            'res' => true,
+            'usuario' => $usuario
+        ]);
     }
 
     /**
