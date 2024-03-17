@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\GuardarUsuarioRequest;
 use App\Models\Usuarios;
 use Illuminate\Http\Request;
 
@@ -18,11 +19,16 @@ class UsuariosController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * metodo post
      */
-    public function store(Request $request)
+    public function store(GuardarUsuarioRequest $request)
     {
-        //
+        Usuarios::create($request->all());
+
+        return response()->json([
+            'res' => true,
+            'msg' => 'Usuario almacenado correctamente'
+        ]);
     }
 
     /**
