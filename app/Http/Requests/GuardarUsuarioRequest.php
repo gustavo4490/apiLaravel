@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class GuardarUsuarioRequest extends FormRequest
 {
@@ -28,5 +30,19 @@ class GuardarUsuarioRequest extends FormRequest
             'password' => 'required',
             'rol' => 'required'
         ];
+    }
+
+    /**
+     * Handle a failed validation attempt.
+     *
+     * @param  \Illuminate\Contracts\Validation\Validator  $validator
+     * @throws \Illuminate\Http\Exceptions\HttpResponseException
+     */
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'res' => false,
+            'msg' => $validator->errors()->first(),
+        ], 422));
     }
 }
